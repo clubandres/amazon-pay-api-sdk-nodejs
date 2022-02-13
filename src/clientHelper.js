@@ -144,7 +144,10 @@ function signHeaders(configArgs, options) {
     headers['x-amz-pay-region'] = constants.REGION_MAP[configArgs.region.toLowerCase()];
     headers['x-amz-pay-host'] =  getAPIEndpointBaseURL(configArgs);
     headers['x-amz-pay-date'] = getTimestamp();
-    headers['content-type'] =  'application/json';
+    if(options.method !== 'GET')
+    {
+      headers['content-type'] =  'application/json';
+    }
     headers['accept'] = 'application/json';
     headers['user-agent'] = `amazon-pay-api-sdk-nodejs/${constants.SDK_VERSION} (JS/${process.versions.node}; ${process.platform})`;
 
